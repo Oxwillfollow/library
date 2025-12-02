@@ -24,7 +24,7 @@ th{
     border-radius: 8px;
 }
 
-td[headers=remove-column]{
+td[headers=remove-column], td[headers=edit-column]{
     background-color: #353535;
 }
 
@@ -47,10 +47,14 @@ tr:nth-child(odd){
     background-color: rgb(36, 36, 36);
 }
 
-.remove-btn{
+.remove-btn, .edit-btn{
     border: 0;
     background-color: #ff9d8c;
     cursor: pointer;
     border-radius: 8px;
     padding: 6px 12px;
+}
+
+.edit-btn{
+    background-color: rgb(193, 222, 255);
 }

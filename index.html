@@ -19,14 +19,14 @@
             <label for="author">Author:</label>
             <input type="text" name="author" id="author" required>
             <label for="genre">Genre:</label>
-            <input type="text" name="genre" id="genre" required>
+            <input type="text" name="genre" id="genre">
             <label for="year">Year:</label>
             <input type="number" name="year" id="year">
             <label for="pages">Pages:</label>
             <input type="number" name="pages" id="pages">
             <label for="read">Have Read:</label>
             <input type="checkbox" name="read" id="read">
-            <button type="submit" class="submit-btn" value="default">Add</button>
+            <button type="submit" class="submit-btn" value="submit">Add</button>
             <button type="button" class="cancel-btn" value="cancel" formnovalidate>Cancel</button>
         </form>
     </dialog>
@@ -39,6 +39,7 @@
                 <th id="year-column">Year</th>
                 <th id="pages-column">Pages</th>
                 <th id="read-column">Read</th>
+                <th id="edit-column" hidden></th>
                 <th id="remove-column" hidden></th>
             </tr>
         </thead>

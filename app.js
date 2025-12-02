@@ -11,10 +11,18 @@ const inputRead = document.getElementById('read');
 const libraryTable = document.querySelector('.library-table');
 const libraryTbody = libraryTable.querySelector('tbody');
 
-newBookBtn.addEventListener('click', () => newBookDialog.showModal());
+newBookBtn.addEventListener('click', () => {
+    submitBtn.textContent = "Add";
+    newBookDialog.returnValue = "";
+    newBookDialog.showModal();
+});
 cancelBtn.addEventListener('click', () => newBookDialog.close());
-newBookDialog.addEventListener('submit', () => {
-    addNewBookToLibrary(inputTitle.value, inputAuthor.value, inputGenre.value, inputYear.value, inputPages.value, inputRead.checked);
+newBookDialog.addEventListener('submit', (e) => {
+    if(newBookDialog.returnValue !== ""){
+        editBook(libraryArr[newBookDialog.returnValue]);
+    }
+    else
+        addNewBookToLibrary(inputTitle.value, inputAuthor.value, inputGenre.value, inputYear.value, inputPages.value, inputRead.checked);
 });
 newBookDialog.addEventListener('close', () => {
     inputTitle.value = '';
@@ -42,8 +50,22 @@ function addNewBookToLibrary(title, author, genre, year, pages, read){
     updateLibraryTable();
 }
 
+function editBook(book){
+    book.title = inputTitle.value;
+    book.author = inputAuthor.value;
+    book.genre = inputGenre.value;
+    book.year = inputYear.value;
+    book.pages = inputPages.value;
+    book.read = inputRead.checked;
+    updateLibraryTable();
+}
+
+Book.prototype.toggleRead = function(){
+    this.read = !this.read;
+}
+
 function updateLibraryTable(){
-    // clear library table
+    // clear table
     while(libraryTbody.firstChild)
         libraryTbody.removeChild(libraryTbody.firstChild);
 
@@ -56,7 +78,7 @@ function updateLibraryTable(){
             if(key === "read"){
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
-                checkbox.addEventListener('change', () => book.read = !book.read);
+                checkbox.addEventListener('change', () => book.toggleRead());
                 newCell.appendChild(checkbox);
                 checkbox.checked = book.read;
             }
@@ -71,7 +93,28 @@ function updateLibraryTable(){
             newRow.appendChild(newCell);
         }
 
-        // add a cell with a delete button
+        // add a cell with an edit  button
+        const editCell = document.createElement("td");
+        editCell.headers = "edit-column";
+        const editButton = document.createElement("button");
+        editButton.addEventListener('click', () => {
+            newBookDialog.returnValue = libraryArr.indexOf(book);
+            newBookDialog.showModal();
+            inputTitle.value = book.title;
+            inputAuthor.value = book.author;
+            inputGenre.value = book.genre;
+            inputYear.value = book.year;
+            inputPages.value = book.pages;
+            inputRead.checked = book.read;
+            submitBtn.textContent = "Edit";
+        });
+
+        editButton.textContent = "Edit";
+        editButton.classList.add("edit-btn");
+        editCell.appendChild(editButton);
+        newRow.appendChild(editCell);
+
+        // add a cell with a remove  button
         const removeCell = document.createElement("td");
         removeCell.headers = "remove-column";
         const removeButton = document.createElement("button");
