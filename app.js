@@ -1,7 +1,8 @@
 const newBookBtn = document.querySelector('.newbook-btn');
-const cancelBtn = document.querySelector('.cancel-btn');
 const submitBtn = document.querySelector('.submit-btn');
-const newBookDialog = document.querySelector('.newbook-dialog');
+const cancelBtn = document.querySelector('.cancel-btn');
+const placeholderRow = document.getElementById('placeholder-row');
+const bookDialog = document.querySelector('.book-dialog');
 const inputTitle = document.getElementById('title');
 const inputAuthor = document.getElementById('author');
 const inputGenre = document.getElementById('genre');
@@ -13,21 +14,21 @@ const libraryTbody = libraryTable.querySelector('tbody');
 
 newBookBtn.addEventListener('click', () => {
     submitBtn.textContent = "Add";
-    newBookDialog.returnValue = "";
-    newBookDialog.showModal();
+    bookDialog.returnValue = "";
+    bookDialog.showModal();
 });
-cancelBtn.addEventListener('click', () => newBookDialog.close());
+cancelBtn.addEventListener('click', () => bookDialog.close());
 
 // return value = id of current book that user is editing. if empty = new book.
-newBookDialog.addEventListener('submit', (e) => {
-    if(newBookDialog.returnValue !== ""){
-        editBook(newBookDialog.returnValue);
+bookDialog.addEventListener('submit', (e) => {
+    if(bookDialog.returnValue !== ""){
+        editBook(bookDialog.returnValue);
     }
     else
         addNewBookToLibrary(inputTitle.value, inputAuthor.value, inputGenre.value, inputYear.value, inputPages.value, inputRead.checked);
 });
 
-newBookDialog.addEventListener('close', () => {
+bookDialog.addEventListener('close', () => {
     inputTitle.value = '';
     inputAuthor.value = '';
     inputGenre.value = '';
@@ -72,8 +73,18 @@ Book.prototype.toggleRead = function(){
 
 function updateLibraryTable(){
     // clear table
-    while(libraryTbody.firstChild)
-        libraryTbody.removeChild(libraryTbody.firstChild);
+    let rowArray = [...libraryTbody.children];
+    rowArray.forEach(child => {
+        if(child.id !== "placeholder-row")
+            libraryTbody.removeChild(child);           
+    });
+
+    if(libraryArr.length <= 0){
+        placeholderRow.style.display = "table-row";
+        return;
+    }
+
+    placeholderRow.style.display = "none";
 
     libraryArr.forEach(book => {
         const newRow = document.createElement("tr");
@@ -106,8 +117,8 @@ function updateLibraryTable(){
         editCell.headers = "edit-column";
         const editButton = document.createElement("button");
         editButton.addEventListener('click', () => {
-            newBookDialog.returnValue = book.id;
-            newBookDialog.showModal();
+            bookDialog.returnValue = book.id;
+            bookDialog.showModal();
             inputTitle.value = book.title;
             inputAuthor.value = book.author;
             inputGenre.value = book.genre;
@@ -128,7 +139,7 @@ function updateLibraryTable(){
         const removeButton = document.createElement("button");
         removeButton.addEventListener('click', () => {
             libraryArr.splice(libraryArr.find(item => item.id === book.id), 1);
-            libraryTbody.removeChild(newRow)
+            updateLibraryTable();
         });
 
         removeButton.textContent = "Remove";

@@ -9,10 +9,7 @@
     <script defer src="app.js"></script>
 </head>
 <body>
-    <div>
-        <button class="newbook-btn">New Book</button>
-    </div>
-    <dialog class="newbook-dialog" closedby="closerequest">
+    <dialog class="book-dialog" closedby="closerequest">
         <form method="dialog">
             <label for="title">Title:</label>
             <input type="text" name="title" id="title" required>
@@ -21,31 +18,42 @@
             <label for="genre">Genre:</label>
             <input type="text" name="genre" id="genre">
             <label for="year">Year:</label>
-            <input type="number" name="year" id="year" min="-9999" max="2099">
+            <input type="number" name="year" id="year">
             <label for="pages">Pages:</label>
-            <input type="number" name="pages" id="pages" min="1" max="9999">
-            <label for="read">Have Read:</label>
+            <input type="number" name="pages" id="pages">
+            <label for="read">Have Read?</label>
             <input type="checkbox" name="read" id="read">
             <button type="submit" class="submit-btn" value="submit">Add</button>
             <button type="button" class="cancel-btn" value="cancel" formnovalidate>Cancel</button>
         </form>
     </dialog>
-    <table class="library-table">
-        <thead>
-            <tr>
-                <th id="title-column">Title</th>
-                <th id="author-column">Author</th>
-                <th id="genre-column">Genre</th>
-                <th id="year-column">Year</th>
-                <th id="pages-column">Pages</th>
-                <th id="read-column">Read</th>
-                <th id="edit-column" hidden></th>
-                <th id="remove-column" hidden></th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <header>
+        <h1>My Library</h1>
+    </header>
+    <div class="main-content">
+        <div class="library-container">
+            <table class="library-table">
+                <thead>
+                    <tr>
+                        <th id="title-column">Title</th>
+                        <th id="author-column">Author</th>
+                        <th id="genre-column">Genre</th>
+                        <th id="year-column">Year</th>
+                        <th id="pages-column">Pages</th>
+                        <th id="read-column">Read</th>
+                        <th id="edit-column" hidden></th>
+                        <th id="remove-column" hidden></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="placeholder-row">
+                        <td colspan="8">Oh no, I'm empty! Add some books please :(</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="newbook-btn">New Book</button>
+    </div>
 
 </body>
 </html>
