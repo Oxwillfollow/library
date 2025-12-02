@@ -17,13 +17,16 @@ newBookBtn.addEventListener('click', () => {
     newBookDialog.showModal();
 });
 cancelBtn.addEventListener('click', () => newBookDialog.close());
+
+// return value = id of current book that user is editing. if empty = new book.
 newBookDialog.addEventListener('submit', (e) => {
     if(newBookDialog.returnValue !== ""){
-        editBook(libraryArr[newBookDialog.returnValue]);
+        editBook(newBookDialog.returnValue);
     }
     else
         addNewBookToLibrary(inputTitle.value, inputAuthor.value, inputGenre.value, inputYear.value, inputPages.value, inputRead.checked);
 });
+
 newBookDialog.addEventListener('close', () => {
     inputTitle.value = '';
     inputAuthor.value = '';
@@ -42,6 +45,7 @@ function Book(title, author, genre, year, pages, read){
     this.year = year;
     this.pages = pages;
     this.read = read;
+    this.id = crypto.randomUUID();
 }
 
 function addNewBookToLibrary(title, author, genre, year, pages, read){
@@ -50,7 +54,9 @@ function addNewBookToLibrary(title, author, genre, year, pages, read){
     updateLibraryTable();
 }
 
-function editBook(book){
+function editBook(bookID){
+    let book = libraryArr.find(item => item.id === bookID);
+
     book.title = inputTitle.value;
     book.author = inputAuthor.value;
     book.genre = inputGenre.value;
@@ -71,10 +77,12 @@ function updateLibraryTable(){
 
     libraryArr.forEach(book => {
         const newRow = document.createElement("tr");
+        newRow.setAttribute("data-id", book.id);
         for(const [key, value] of Object.entries(book)){
+            if(key=== "id")
+                continue
             const newCell = document.createElement("td");
             newCell.headers = `${key}-column`;
-
             if(key === "read"){
                 const checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
@@ -98,7 +106,7 @@ function updateLibraryTable(){
         editCell.headers = "edit-column";
         const editButton = document.createElement("button");
         editButton.addEventListener('click', () => {
-            newBookDialog.returnValue = libraryArr.indexOf(book);
+            newBookDialog.returnValue = book.id;
             newBookDialog.showModal();
             inputTitle.value = book.title;
             inputAuthor.value = book.author;
@@ -119,7 +127,7 @@ function updateLibraryTable(){
         removeCell.headers = "remove-column";
         const removeButton = document.createElement("button");
         removeButton.addEventListener('click', () => {
-            libraryArr.splice(libraryArr.indexOf(book), 1);
+            libraryArr.splice(libraryArr.find(item => item.id === book.id), 1);
             libraryTbody.removeChild(newRow)
         });
 

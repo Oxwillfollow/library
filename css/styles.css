@@ -28,7 +28,11 @@ td[headers=remove-column], td[headers=edit-column]{
     background-color: #353535;
 }
 
-th[id=read-column]{
+#title-column, #author-column {
+    width: 256px;
+}
+
+#read-column{
     width: 64px;
 }
 
@@ -37,6 +41,8 @@ td{
     border-radius: 8px;
     padding: 8px;
     text-align: center;
+    word-wrap: break-word;
+    width: 128px;
 }
 
 tr{
