@@ -1,3 +1,56 @@
+:root {
+    --bg-color: rgb(236, 229, 212);
+}
+
+body {
+    background-color: var(--bg-color);
+}
+
 label:has(+ input:required){
     font-weight: bold;
+}
+
+table{
+    border: 2px solid black;
+    border-radius: 8px;
+    border-spacing: 8px;
+    background-color: #353535;
+    table-layout: fixed;
+}
+
+th{
+    background-color: #ffc595;
+    width: 128px;
+    border-radius: 8px;
+}
+
+td[headers=remove-column]{
+    background-color: #353535;
+}
+
+th[id=read-column]{
+    width: 64px;
+}
+
+td{
+    color: white;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+}
+
+tr{
+    height: 32px;
+}
+
+tr:nth-child(odd){
+    background-color: rgb(36, 36, 36);
+}
+
+.remove-btn{
+    border: 0;
+    background-color: #ff9d8c;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 6px 12px;
 }
