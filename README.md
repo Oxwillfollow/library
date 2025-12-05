@@ -1,5 +1,5 @@
 # library
 
-An excercise project to manipulate arrays, objects and use HTML tables.
+Working with basic javascript. Classes, IIFE modular pattern.
 
 Live preview: https://oxwillfollow.github.io/library

@@ -9,6 +9,10 @@ class Book{
     }
 
     id = crypto.randomUUID();
+
+    toggleRead(){
+            this.read = !this.read;
+    }
 }
 
 const libraryManager = (function(){ 
@@ -96,10 +100,6 @@ const libraryManager = (function(){
         updateLibraryTable();
     }
 
-    Book.prototype.toggleRead = function(){
-        this.read = !this.read;
-    }
-
     function updateLibraryTable(){
         // clear table
         let rowArray = [...cacheDOM.libraryTbody.children];
@@ -180,5 +180,14 @@ const libraryManager = (function(){
         });
     }
 
+    const getBooks = function(){
+        return libraryArr;
+    }
+
     init();
+
+    return {
+        addNewBookToLibrary,
+        getBooks,
+    }
 })();
