@@ -1,59 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
-    <link rel="stylesheet" href="css/modern-normalize.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/modern-normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
     <script defer src="app.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <dialog class="book-dialog" closedby="closerequest">
-        <form method="dialog">
-            <label for="title">Title:</label>
-            <input type="text" name="title" id="title" required>
-            <label for="author">Author:</label>
-            <input type="text" name="author" id="author" required>
-            <label for="genre">Genre:</label>
-            <input type="text" name="genre" id="genre">
-            <label for="year">Year:</label>
-            <input type="number" name="year" id="year">
-            <label for="pages">Pages:</label>
-            <input type="number" name="pages" id="pages">
-            <label for="read">Have Read?</label>
-            <input type="checkbox" name="read" id="read">
-            <button type="submit" class="submit-btn" value="submit">Add</button>
-            <button type="button" class="cancel-btn" value="cancel" formnovalidate>Cancel</button>
-        </form>
+      <form method="dialog" novalidate>
+        <label for="title">
+          <span>Title:*</span>
+          <input type="text" name="title" id="title" minlength="3" required />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        <label for="author">
+          <span>Author:*</span>
+          <input type="text" name="author" id="author" minlength="3" required />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        <label for="genre">
+          <span>Genre:</span>
+          <input type="text" name="genre" id="genre" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        <label for="year">
+          <span>Year:</span>
+          <input type="number" name="year" id="year" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        <label for="pages">
+          <span>Pages:</span>
+          <input type="number" name="pages" id="pages" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        <label for="read">
+          <span>Have Read?</span>
+          <input type="checkbox" name="read" id="read" />
+          <span class="error" aria-live="polite"></span>
+        </label>
+        <button type="submit" class="submit-btn" value="submit">Add</button>
+        <button type="button" class="cancel-btn" value="cancel" formnovalidate>
+          Cancel
+        </button>
+      </form>
     </dialog>
     <header>
-        <h1>My Library</h1>
+      <h1>My Library</h1>
     </header>
     <div class="main-content">
-        <div class="library-container">
-            <table class="library-table">
-                <thead>
-                    <tr>
-                        <th id="title-column">Title</th>
-                        <th id="author-column">Author</th>
-                        <th id="genre-column">Genre</th>
-                        <th id="year-column">Year</th>
-                        <th id="pages-column">Pages</th>
-                        <th id="read-column">Read</th>
-                        <th id="edit-column" hidden></th>
-                        <th id="remove-column" hidden></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="placeholder-row">
-                        <td colspan="8">Oh no, I'm empty! Add some books please :(</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <button class="newbook-btn">New Book</button>
+      <div class="library-container">
+        <table class="library-table">
+          <thead>
+            <tr>
+              <th id="title-column">Title</th>
+              <th id="author-column">Author</th>
+              <th id="genre-column">Genre</th>
+              <th id="year-column">Year</th>
+              <th id="pages-column">Pages</th>
+              <th id="read-column">Read</th>
+              <th id="edit-column" hidden></th>
+              <th id="remove-column" hidden></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="placeholder-row">
+              <td colspan="8">Oh no, I'm empty! Add some books please :(</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="newbook-btn">New Book</button>
     </div>
-
-</body>
+  </body>
 </html>

@@ -1,169 +1,183 @@
 :root {
-    --bg-color-light: #fff8e7;
-    --bg-color-dark: #353535;
-    --accent-color: #e7c689;
-    --accent-color-dark: #ac7e3a;
+  --bg-color-light: #fff8e7;
+  --bg-color-dark: #353535;
+  --accent-color: #e7c689;
+  --accent-color-dark: #ac7e3a;
 }
 
 @font-face {
-    font-family: Roboto-Flex;
-    src: url(../fonts/roboto-flex-v30-latin-regular.woff2) format("woff2");
+  font-family: Roboto-Flex;
+  src: url(../fonts/roboto-flex-v30-latin-regular.woff2) format("woff2");
 }
 
 * {
-    font-family: Roboto-Flex, sans-serif;
-    letter-spacing: 0.1rem;
-    word-spacing: 0.5rem;
+  font-family: Roboto-Flex, sans-serif;
+  letter-spacing: 0.1rem;
+  word-spacing: 0.5rem;
 }
 
 body {
-    height: 100vh;
-    background-color: var(--bg-color-light);
-    display: flex;
-    flex-direction: column;
+  height: 100vh;
+  background-color: var(--bg-color-light);
+  display: flex;
+  flex-direction: column;
 }
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
 }
 
 h1 {
-    letter-spacing: 0.8rem;
-    word-spacing: 1.5rem;
-    font-size: 2.5rem;
-    font-weight: 900;
+  letter-spacing: 0.8rem;
+  word-spacing: 1.5rem;
+  font-size: 2.5rem;
+  font-weight: 900;
 }
 
 .newbook-btn {
-    background-color: var(--accent-color-dark);
-    font-size: 1.5rem;
-    border: 0;
-    border-radius: 8px;
-    color: var(--bg-color-light);
-    padding: 16px 40px;
-    justify-self: stretch;
+  background-color: var(--accent-color-dark);
+  font-size: 1.5rem;
+  border: 0;
+  border-radius: 8px;
+  color: var(--bg-color-light);
+  padding: 16px 40px;
+  justify-self: stretch;
 }
 
-label:has(+ input:required){
-    font-weight: bold;
+label:has(+ input:required) {
+  font-weight: bold;
 }
 
 .book-dialog {
-    padding: 0;
-    margin: auto;
+  padding: 0;
+  margin: auto;
 }
 
 .book-dialog form {
-    height: 500px;
-    background-color: var(--accent-color-dark);
-    width: 400px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px;
+  height: 540px;
+  background-color: var(--accent-color-dark);
+  width: 400px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
 
-    input {
-        width: 100%;
-    }
-
-    button {
-        width: 128px;
-        border-radius: 8px;
-    }
-}
-
-.main-content{
-    background-color: var(--bg-color-dark);
-    height: 100vh;
-    padding: 40px; 
-    display: flex;
-    flex-direction: column;
-    margin-left: 10%;
-    gap: 20px;
-}
-
-table{
-    background-color: var(--bg-color-dark);
-    table-layout: fixed;
-    border-spacing: 20px;
-    border: 2px solid var(--bg-color-light);
+  button {
+    width: 128px;
     border-radius: 8px;
-    justify-self: stretch;
-    padding: 40px;
+    margin-top: 10px;
+  }
 }
 
-th{
-    background-color: var(--accent-color);
-    width: 128px;
-    font-size: 20px;
+label:not([for="read"]) {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
 }
 
-td[headers=remove-column], td[headers=edit-column]{
-    background-color: var(--bg-color-dark);
-    width: 128px;
+.main-content {
+  background-color: var(--bg-color-dark);
+  height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10%;
+  gap: 20px;
 }
 
-#edit-column, #remove-column {
-    width: 32px;
+table {
+  background-color: var(--bg-color-dark);
+  table-layout: fixed;
+  border-spacing: 20px;
+  border: 2px solid var(--bg-color-light);
+  border-radius: 8px;
+  justify-self: stretch;
+  padding: 40px;
 }
 
-#title-column, #author-column {
-    width: 256px;
+th {
+  background-color: var(--accent-color);
+  width: 128px;
+  font-size: 20px;
+}
+
+td[headers="remove-column"],
+td[headers="edit-column"] {
+  background-color: var(--bg-color-dark);
+  width: 128px;
+}
+
+#edit-column,
+#remove-column {
+  width: 32px;
+}
+
+#title-column,
+#author-column {
+  width: 256px;
 }
 
 #placeholder-row {
-    background-color: var(--bg-color-dark);
+  background-color: var(--bg-color-dark);
 
-    td {
-        color:var(--accent-color);
-    }
+  td {
+    color: var(--accent-color);
+  }
 }
 
-#read-column{
-    width: 80px;
+#read-column {
+  width: 80px;
 }
 
-td{
-    color: var(--bg-color-light);
-    padding: 8px;
-    text-align: center;
+td {
+  color: var(--bg-color-light);
+  padding: 8px;
+  text-align: center;
 }
 
-td, th {
-    height: 48px;
-    max-height: 48px;
+td,
+th {
+  height: 48px;
+  max-height: 48px;
 }
 
-
-tr:nth-child(odd){
-    background-color: rgb(36, 36, 36);
+tr:nth-child(odd) {
+  background-color: rgb(36, 36, 36);
 }
 
-.remove-btn, .edit-btn{
-    border: 0;
-    background-color: rgb(255, 181, 162);
-    padding: 6px 12px;
-    width: 100%;
-    height: 100%;
-    display: block;
+.remove-btn,
+.edit-btn {
+  border: 0;
+  background-color: rgb(255, 181, 162);
+  padding: 6px 12px;
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.edit-btn{
-    background-color: rgb(193, 222, 255);
+.edit-btn {
+  background-color: rgb(193, 222, 255);
+}
+
+span.error {
+  color: rgb(182, 11, 11);
+  padding: 4px 0;
+  word-spacing: 0rem;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-button:hover{
-    opacity: 85%;
+button:hover {
+  opacity: 85%;
 }
 
-button:active{
-    opacity: 70%;
+button:active {
+  opacity: 70%;
 }
