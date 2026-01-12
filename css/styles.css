@@ -47,10 +47,6 @@ h1 {
   justify-self: stretch;
 }
 
-label:has(+ input:required) {
-  font-weight: bold;
-}
-
 .book-dialog {
   padding: 0;
   margin: auto;
